@@ -1,21 +1,21 @@
 <div class="max-w-7xl mx-auto px-6 py-12">
   <div class="flex items-center justify-between mb-8">
     <div>
-      <h1 class="text-3xl font-bold text-white mb-2">Admin Portal</h1>
-      <p class="text-slate-400">Manage users and view system analytics</p>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Admin Portal</h1>
+      <p class="text-slate-600">Manage users and view system analytics</p>
     </div>
   </div>
 
-  <div *ngIf="message" class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/50 text-emerald-400">
+  <div *ngIf="message" class="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700">
     {{ message }}
   </div>
 
   <!-- Tabs -->
-  <div class="flex gap-4 border-b border-white/10 mb-8">
-    <button (click)="activeTab = 'users'" [class]="'pb-4 px-2 font-medium transition-colors border-b-2 ' + (activeTab === 'users' ? 'text-emerald-400 border-emerald-400' : 'text-slate-400 border-transparent hover:text-white')">
+  <div class="flex gap-4 border-b border-slate-200 mb-8">
+    <button (click)="activeTab = 'users'" [class]="'pb-4 px-2 font-medium transition-colors border-b-2 ' + (activeTab === 'users' ? 'text-blue-600 border-blue-600' : 'text-slate-600 border-transparent hover:text-blue-600')">
       User Management
     </button>
-    <button (click)="activeTab = 'analytics'" [class]="'pb-4 px-2 font-medium transition-colors border-b-2 ' + (activeTab === 'analytics' ? 'text-emerald-400 border-emerald-400' : 'text-slate-400 border-transparent hover:text-white')">
+    <button (click)="activeTab = 'analytics'" [class]="'pb-4 px-2 font-medium transition-colors border-b-2 ' + (activeTab === 'analytics' ? 'text-blue-600 border-blue-600' : 'text-slate-600 border-transparent hover:text-blue-600')">
       System Analytics
     </button>
   </div>
@@ -24,10 +24,10 @@
   <div *ngIf="activeTab === 'users'">
     <div *ngIf="loadingUsers" class="text-slate-400">Loading users...</div>
     
-    <div *ngIf="!loadingUsers" class="bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden backdrop-blur-sm">
+    <div *ngIf="!loadingUsers" class="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-          <thead class="bg-white/[0.02] border-b border-white/5 text-slate-400">
+          <thead class="bg-slate-50 border-b border-slate-200 text-slate-600">
             <tr>
               <th class="px-6 py-4 font-medium">Name</th>
               <th class="px-6 py-4 font-medium">Email</th>
@@ -35,14 +35,14 @@
               <th class="px-6 py-4 font-medium">Role</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-white/5">
-            <tr *ngFor="let user of users" class="hover:bg-white/[0.02] transition-colors">
-              <td class="px-6 py-4 text-white font-medium">{{ user.firstName }} {{ user.lastName }}</td>
-              <td class="px-6 py-4 text-slate-400">{{ user.email }}</td>
-              <td class="px-6 py-4 text-slate-400">{{ formatDate(user.createdAt) }}</td>
+          <tbody class="divide-y divide-slate-200">
+            <tr *ngFor="let user of users" class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4 text-slate-900 font-medium">{{ user.firstName }} {{ user.lastName }}</td>
+              <td class="px-6 py-4 text-slate-600">{{ user.email }}</td>
+              <td class="px-6 py-4 text-slate-600">{{ formatDate(user.createdAt) }}</td>
               <td class="px-6 py-4">
                 <select [value]="user.role" (change)="updateRole(user.id, $event)" aria-label="Change user role"
-                        class="bg-black border border-white/10 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 outline-none">
+                        class="bg-white border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none">
                   <option value="Candidate">Candidate</option>
                   <option value="Recruiter">Recruiter</option>
                   <option value="HiringManager">Hiring Manager</option>
@@ -59,63 +59,63 @@
   <!-- Analytics Tab -->
   <div *ngIf="activeTab === 'analytics' && stats">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-      <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center">
-        <p class="text-3xl font-bold text-white mb-1">{{ stats.totalUsers }}</p>
-        <p class="text-sm text-slate-400">Total Users</p>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center hover:shadow-md transition-all">
+        <p class="text-3xl font-bold text-slate-900 mb-1">{{ stats.totalUsers }}</p>
+        <p class="text-sm text-slate-600">Total Users</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center">
-        <p class="text-3xl font-bold text-white mb-1">{{ stats.totalJobs }}</p>
-        <p class="text-sm text-slate-400">Total Jobs</p>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center hover:shadow-md transition-all">
+        <p class="text-3xl font-bold text-slate-900 mb-1">{{ stats.totalJobs }}</p>
+        <p class="text-sm text-slate-600">Total Jobs</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center">
-        <p class="text-3xl font-bold text-white mb-1">{{ stats.activeJobs }}</p>
-        <p class="text-sm text-slate-400">Active Jobs</p>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center hover:shadow-md transition-all">
+        <p class="text-3xl font-bold text-slate-900 mb-1">{{ stats.activeJobs }}</p>
+        <p class="text-sm text-slate-600">Active Jobs</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center">
-        <p class="text-3xl font-bold text-white mb-1">{{ stats.totalApplications }}</p>
-        <p class="text-sm text-slate-400">Applications</p>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center hover:shadow-md transition-all">
+        <p class="text-3xl font-bold text-slate-900 mb-1">{{ stats.totalApplications }}</p>
+        <p class="text-sm text-slate-600">Applications</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- User Distribution Chart (CSS Bars) -->
-      <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-        <h3 class="text-lg font-semibold text-white mb-6">User Demographics</h3>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h3 class="text-lg font-semibold text-slate-900 mb-6">User Demographics</h3>
         
         <div class="space-y-4">
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Candidates</span>
-              <span class="text-emerald-400">{{ stats.totalCandidates }}</span>
+              <span class="text-slate-700">Candidates</span>
+              <span class="text-emerald-600 font-medium">{{ stats.totalCandidates }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="(stats.totalCandidates / stats.totalUsers) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Recruiters</span>
-              <span class="text-cyan-400">{{ stats.totalRecruiters }}</span>
+              <span class="text-slate-700">Recruiters</span>
+              <span class="text-cyan-600 font-medium">{{ stats.totalRecruiters }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-cyan-500 h-2 rounded-full" [style.width.%]="(stats.totalRecruiters / stats.totalUsers) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Hiring Managers</span>
-              <span class="text-blue-400">{{ stats.totalHiringManagers }}</span>
+              <span class="text-slate-700">Hiring Managers</span>
+              <span class="text-blue-600 font-medium">{{ stats.totalHiringManagers }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-blue-500 h-2 rounded-full" [style.width.%]="(stats.totalHiringManagers / stats.totalUsers) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Admins</span>
-              <span class="text-purple-400">{{ stats.totalAdmins }}</span>
+              <span class="text-slate-700">Admins</span>
+              <span class="text-purple-600 font-medium">{{ stats.totalAdmins }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-purple-500 h-2 rounded-full" [style.width.%]="(stats.totalAdmins / stats.totalUsers) * 100"></div>
             </div>
           </div>
@@ -123,52 +123,52 @@
       </div>
 
       <!-- Application Funnel (CSS Bars) -->
-      <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-        <h3 class="text-lg font-semibold text-white mb-6">Hiring Funnel</h3>
+      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+        <h3 class="text-lg font-semibold text-slate-900 mb-6">Hiring Funnel</h3>
         
         <div class="space-y-4">
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Applied</span>
-              <span class="text-slate-400">{{ stats.applicationsApplied }}</span>
+              <span class="text-slate-700">Applied</span>
+              <span class="text-slate-600 font-medium">{{ stats.applicationsApplied }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-slate-400 h-2 rounded-full" [style.width.%]="(stats.applicationsApplied / (stats.totalApplications || 1)) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Shortlisted</span>
-              <span class="text-blue-400">{{ stats.applicationsShortlisted }}</span>
+              <span class="text-slate-700">Shortlisted</span>
+              <span class="text-blue-600 font-medium">{{ stats.applicationsShortlisted }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-blue-500 h-2 rounded-full" [style.width.%]="(stats.applicationsShortlisted / (stats.totalApplications || 1)) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Interviewed</span>
-              <span class="text-purple-400">{{ stats.applicationsInterviewed }}</span>
+              <span class="text-slate-700">Interviewed</span>
+              <span class="text-purple-600 font-medium">{{ stats.applicationsInterviewed }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-purple-500 h-2 rounded-full" [style.width.%]="(stats.applicationsInterviewed / (stats.totalApplications || 1)) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Hired</span>
-              <span class="text-emerald-400">{{ stats.applicationsHired }}</span>
+              <span class="text-slate-700">Hired</span>
+              <span class="text-emerald-600 font-medium">{{ stats.applicationsHired }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="(stats.applicationsHired / (stats.totalApplications || 1)) * 100"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
-              <span class="text-slate-300">Rejected</span>
-              <span class="text-rose-400">{{ stats.applicationsRejected }}</span>
+              <span class="text-slate-700">Rejected</span>
+              <span class="text-rose-600 font-medium">{{ stats.applicationsRejected }}</span>
             </div>
-            <div class="w-full bg-white/5 rounded-full h-2">
+            <div class="w-full bg-slate-100 rounded-full h-2">
               <div class="bg-rose-500 h-2 rounded-full" [style.width.%]="(stats.applicationsRejected / (stats.totalApplications || 1)) * 100"></div>
             </div>
           </div>

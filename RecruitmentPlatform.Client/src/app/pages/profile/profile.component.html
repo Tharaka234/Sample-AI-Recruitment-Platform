@@ -2,8 +2,8 @@
   <div class="max-w-4xl mx-auto">
     
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-white mb-2">My Profile</h1>
-      <p class="text-slate-400">Manage your professional details and resume.</p>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">My Profile</h1>
+      <p class="text-slate-600">Manage your professional details and resume.</p>
     </div>
 
     <!-- Alerts -->
@@ -16,43 +16,43 @@
 
     <!-- Loading State -->
     <div *ngIf="isLoading" class="flex justify-center py-12">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500"></div>
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
     </div>
 
     <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       
       <!-- Main Details Form -->
       <div class="md:col-span-2 space-y-6">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6">Professional Details</h2>
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-slate-900 mb-6">Professional Details</h2>
           
           <div class="space-y-4">
             <div>
-              <label for="bio" class="block text-sm font-medium text-slate-300 mb-1">Professional Bio</label>
+              <label for="bio" class="block text-sm font-medium text-slate-700 mb-1">Professional Bio</label>
               <textarea id="bio" [(ngModel)]="profile.bio" rows="4" placeholder="Tell us about yourself..."
-                        class="w-full bg-black border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors placeholder:text-slate-600 resize-none"></textarea>
+                        class="w-full bg-white border border-slate-300 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors placeholder:text-slate-400 resize-none"></textarea>
             </div>
 
             <div>
-              <label for="skills" class="block text-sm font-medium text-slate-300 mb-1">Key Skills (Comma separated)</label>
+              <label for="skills" class="block text-sm font-medium text-slate-700 mb-1">Key Skills (Comma separated)</label>
               <input id="skills" [(ngModel)]="profile.skills" type="text" placeholder="e.g. C#, Angular, MongoDB"
-                     class="w-full bg-black border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors placeholder:text-slate-600">
+                     class="w-full bg-white border border-slate-300 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors placeholder:text-slate-400">
             </div>
 
             <div>
-              <label for="experience" class="block text-sm font-medium text-slate-300 mb-1">Work Experience</label>
+              <label for="experience" class="block text-sm font-medium text-slate-700 mb-1">Work Experience</label>
               <textarea id="experience" [(ngModel)]="profile.experience" rows="3" placeholder="List your relevant work experience..."
-                        class="w-full bg-black border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors placeholder:text-slate-600 resize-none"></textarea>
+                        class="w-full bg-white border border-slate-300 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors placeholder:text-slate-400 resize-none"></textarea>
             </div>
 
             <div>
-              <label for="education" class="block text-sm font-medium text-slate-300 mb-1">Education</label>
+              <label for="education" class="block text-sm font-medium text-slate-700 mb-1">Education</label>
               <input id="education" [(ngModel)]="profile.education" type="text" placeholder="e.g. BSc Computer Science, NSBM"
-                     class="w-full bg-black border border-white/10 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors placeholder:text-slate-600">
+                     class="w-full bg-white border border-slate-300 text-slate-900 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors placeholder:text-slate-400">
             </div>
 
             <button (click)="saveProfile()" [disabled]="isSaving"
-                    class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white rounded-xl px-4 py-3 font-medium transition-all disabled:opacity-50 flex items-center justify-center">
+                    class="w-full mt-4 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 hover:opacity-90 text-white rounded-xl px-4 py-3 font-medium transition-all disabled:opacity-50 flex items-center justify-center shadow-sm">
               <span *ngIf="!isSaving">Save Changes</span>
               <div *ngIf="isSaving" class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
             </button>
@@ -62,34 +62,34 @@
 
       <!-- Resume Sidebar -->
       <div class="space-y-6">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6">Resume / CV</h2>
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-slate-900 mb-6">Resume / CV</h2>
           
-          <div *ngIf="profile.resumeUrl" class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+          <div *ngIf="profile.resumeUrl" class="mb-6 p-4 bg-blue-50/50 border border-blue-200 rounded-xl">
             <div class="flex items-center gap-3">
-              <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
               <div>
-                <p class="text-sm font-medium text-white">Resume Uploaded</p>
-                <a [href]="profile.resumeUrl" target="_blank" class="text-xs text-emerald-400 hover:text-emerald-300 underline">View Document</a>
+                <p class="text-sm font-medium text-slate-900">Resume Uploaded</p>
+                <a [href]="profile.resumeUrl" target="_blank" class="text-xs text-blue-600 hover:text-blue-700 underline">View Document</a>
               </div>
             </div>
           </div>
 
-          <div *ngIf="!profile.resumeUrl" class="mb-6 text-sm text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg">
+          <div *ngIf="!profile.resumeUrl" class="mb-6 text-sm text-amber-700 bg-amber-50 border border-amber-200 p-3 rounded-lg">
             You have not uploaded a resume yet. You must upload one before applying to jobs.
           </div>
 
           <div class="space-y-4">
             <div>
-              <label for="resumeUpload" class="block text-sm font-medium text-slate-300 mb-2">Upload New Resume</label>
-              <input id="resumeUpload" type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx"
-                     class="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-500/10 file:text-emerald-400 hover:file:bg-emerald-500/20 transition-all cursor-pointer">
+              <label for="resumeUpload" class="block text-sm font-medium text-slate-700 mb-2">Upload New Resume</label>
+              <input id="resumeUpload" type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" title="Upload Resume"
+                     class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100 transition-all cursor-pointer">
             </div>
 
             <button (click)="uploadResume()" [disabled]="!selectedFile || isUploading"
-                    class="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl px-4 py-2 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                    class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-xl px-4 py-2 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-sm">
               <span *ngIf="!isUploading">Upload File</span>
-              <div *ngIf="isUploading" class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+              <div *ngIf="isUploading" class="animate-spin rounded-full h-5 w-5 border-b-2 border-slate-600"></div>
             </button>
           </div>
         </div>
