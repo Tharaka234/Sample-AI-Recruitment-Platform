@@ -21,6 +21,9 @@
           <a routerLink="/recruiters" class="hover:text-emerald-400 transition-colors">For Recruiters</a>
         </ng-container>
         <a routerLink="/insights" class="hover:text-emerald-400 transition-colors">AI Insights</a>
+        <ng-container *ngIf="auth.isHiringManager()">
+          <a routerLink="/hiring-manager" class="hover:text-emerald-400 transition-colors">Hiring Dashboard</a>
+        </ng-container>
         <ng-container *ngIf="auth.isAdmin()">
           <a routerLink="/admin" class="text-purple-400 hover:text-purple-300 font-medium transition-colors">Admin Panel</a>
         </ng-container>
@@ -61,6 +64,9 @@
         <a routerLink="/recruiters" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">For Recruiters</a>
       </ng-container>
       <a routerLink="/insights" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">AI Insights</a>
+      <ng-container *ngIf="auth.isHiringManager()">
+        <a routerLink="/hiring-manager" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">Hiring Dashboard</a>
+      </ng-container>
       <ng-container *ngIf="auth.isAdmin()">
         <a routerLink="/admin" class="text-purple-400 hover:text-purple-300 font-medium" (click)="isMenuOpen=false">Admin Panel</a>
       </ng-container>

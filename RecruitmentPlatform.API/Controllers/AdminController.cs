@@ -38,7 +38,7 @@ namespace RecruitmentPlatform.API.Controllers
         [HttpPut("users/{id}/role")]
         public async Task<IActionResult> UpdateRole(string id, UpdateRoleDto dto)
         {
-            var validRoles = new[] { "Candidate", "Recruiter", "Admin" };
+            var validRoles = new[] { "Candidate", "Recruiter", "HiringManager", "Admin" };
             if (!validRoles.Contains(dto.Role))
                 return BadRequest(new { message = "Invalid role." });
 
@@ -64,6 +64,7 @@ namespace RecruitmentPlatform.API.Controllers
                 TotalUsers = users.Count,
                 TotalCandidates = users.Count(u => u.Role == "Candidate"),
                 TotalRecruiters = users.Count(u => u.Role == "Recruiter"),
+                TotalHiringManagers = users.Count(u => u.Role == "HiringManager"),
                 TotalAdmins = users.Count(u => u.Role == "Admin"),
                 
                 TotalJobs = jobs.Count,

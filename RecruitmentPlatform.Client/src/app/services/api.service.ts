@@ -58,6 +58,7 @@ export interface AdminStats {
   totalUsers: number;
   totalCandidates: number;
   totalRecruiters: number;
+  totalHiringManagers: number;
   totalAdmins: number;
   totalJobs: number;
   activeJobs: number;
@@ -116,6 +117,14 @@ export class ApiService {
 
   updateApplicationStatus(appId: string, status: string): Observable<any> {
     return this.http.put(`${API}/api/applications/${appId}/status`, { status });
+  }
+
+  getShortlistedApplications(): Observable<Application[]> {
+    return this.http.get<Application[]>(`${API}/api/applications/shortlisted`);
+  }
+
+  updateHiringDecision(id: string, status: string): Observable<any> {
+    return this.http.put(`${API}/api/applications/${id}/hiring-decision`, { status });
   }
 
   getStats(): Observable<DashboardStats> {

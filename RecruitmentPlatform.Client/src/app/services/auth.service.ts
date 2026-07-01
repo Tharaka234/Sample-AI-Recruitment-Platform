@@ -52,6 +52,10 @@ export class AuthService {
     return this.getUser()?.role === 'Admin';
   }
 
+  isHiringManager(): boolean {
+    return this.getUser()?.role === 'HiringManager';
+  }
+
   setSession(token: string, user: UserData): void {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));

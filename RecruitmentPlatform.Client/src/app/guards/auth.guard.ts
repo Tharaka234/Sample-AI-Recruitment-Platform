@@ -33,3 +33,11 @@ export const adminGuard: CanActivateFn = () => {
   router.navigate(['/']);
   return false;
 };
+
+export const hiringManagerGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isLoggedIn() && auth.isHiringManager()) return true;
+  router.navigate(['/']);
+  return false;
+};

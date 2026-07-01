@@ -179,6 +179,59 @@ namespace RecruitmentPlatform.API.Controllers
             return Ok(new { message = $"Status updated to {dto.Status}." });
         }
 
+        // GET /api/applications/shortlisted — Get shortlisted applications for Hiring Manager
+        [HttpGet("shortlisted")]
+        [Authorize(Roles = "HiringManager")]
+        public async Task<IActionResult> GetShortlisted()
+        {
+            var applications = await _context.Applications
+                .Find(a => a.Status == "Shortlisted" || a.Status == "Interviewed")
+                .SortByDescending(a => a.AiMatchScore)
+                .ToListAsync();
+
+            var response = new List<ApplicationResponseDto>();
+            foreach (var app in applications)
+            {
+                var job = await _context.JobPostings.Find(j => j.Id == app.JobPostingId).FirstOrDefaultAsync();
+                var candidate = await _context.Users.Find(u => u.Id == app.CandidateId).FirstOrDefaultAsync();
+
+                response.Add(new ApplicationResponseDto
+                {
+                    Id = app.Id,
+                    JobPostingId = app.JobPostingId,
+                    JobTitle = job?.Title ?? "Deleted Job",
+                    CandidateId = app.CandidateId,
+                    CandidateName = (candidate?.FirstName + " " + candidate?.LastName).Trim(),
+                    CandidateEmail = candidate?.Email ?? "",
+                    ResumeUrl = app.ResumeUrl,
+                    Status = app.Status,
+                    AiMatchScore = app.AiMatchScore,
+                    AppliedAt = app.AppliedAt
+                });
+            }
+
+            return Ok(response);
+        }
+
+        // PUT /api/applications/{id}/hiring-decision — Make hiring decision (HiringManager)
+        [HttpPut("{id}/hiring-decision")]
+        [Authorize(Roles = "HiringManager")]
+        public async Task<IActionResult> HiringDecision(string id, UpdateStatusDto dto)
+        {
+            var validStatuses = new[] { "Interviewed", "Hired", "Rejected" };
+            if (!validStatuses.Contains(dto.Status))
+                return BadRequest(new { message = "Invalid hiring decision status." });
+
+            var application = await _context.Applications.Find(a => a.Id == id).FirstOrDefaultAsync();
+            if (application == null)
+                return NotFound(new { message = "Application not found." });
+
+            var update = Builders<Application>.Update.Set(a => a.Status, dto.Status);
+            await _context.Applications.UpdateOneAsync(a => a.Id == id, update);
+
+            return Ok(new { message = $"Candidate {dto.Status.ToLower()} successfully." });
+        }
+
         // GET /api/applications/stats — Dashboard stats
         [HttpGet("stats")]
         [Authorize]
@@ -202,6 +255,20 @@ namespace RecruitmentPlatform.API.Controllers
                 return Ok(new DashboardStatsDto
                 {
                     TotalJobs = myJobs.Count(j => j.IsActive),
+                    TotalApplications = applications.Count,
+                    Shortlisted = applications.Count(a => a.Status == "Shortlisted"),
+                    Interviewed = applications.Count(a => a.Status == "Interviewed"),
+                    Hired = applications.Count(a => a.Status == "Hired"),
+                    Rejected = applications.Count(a => a.Status == "Rejected"),
+                    AvgMatchScore = applications.Count > 0 ? Math.Round(applications.Average(a => a.AiMatchScore), 1) : 0
+                });
+            }
+            else if (role == "HiringManager")
+            {
+                var applications = await _context.Applications.Find(a => true).ToListAsync();
+                return Ok(new DashboardStatsDto
+                {
+                    TotalJobs = await _context.JobPostings.CountDocumentsAsync(j => j.IsActive),
                     TotalApplications = applications.Count,
                     Shortlisted = applications.Count(a => a.Status == "Shortlisted"),
                     Interviewed = applications.Count(a => a.Status == "Interviewed"),

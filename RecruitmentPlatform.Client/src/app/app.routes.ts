@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { authGuard, recruiterGuard, candidateGuard, adminGuard } from './guards/auth.guard';
+import { authGuard, recruiterGuard, candidateGuard, adminGuard, hiringManagerGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
   { path: 'jobs', loadComponent: () => import('./pages/find-jobs/find-jobs.component').then(m => m.FindJobsComponent) },
   { path: 'recruiters', loadComponent: () => import('./pages/recruiters/recruiters.component').then(m => m.RecruitersComponent), canActivate: [recruiterGuard] },
+  { path: 'hiring-manager', loadComponent: () => import('./pages/hiring-manager/hiring-manager.component').then(m => m.HiringManagerComponent), canActivate: [hiringManagerGuard] },
   { path: 'admin', loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent), canActivate: [adminGuard] },
   { path: 'insights', loadComponent: () => import('./pages/ai-insights/ai-insights.component').then(m => m.AiInsightsComponent) },
   { path: 'signin', loadComponent: () => import('./pages/sign-in/sign-in.component').then(m => m.SignInComponent) },
