@@ -143,4 +143,19 @@ export class ApiService {
   getAdminStats(): Observable<AdminStats> {
     return this.http.get<AdminStats>(`${API}/api/admin/analytics`);
   }
+
+  // Profile
+  getProfile(): Observable<any> {
+    return this.http.get(`${API}/api/profile`);
+  }
+
+  updateProfile(data: any): Observable<any> {
+    return this.http.put(`${API}/api/profile`, data);
+  }
+
+  uploadResume(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(`${API}/api/profile/upload-resume`, formData);
+  }
 }

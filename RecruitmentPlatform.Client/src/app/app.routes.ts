@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'insights', loadComponent: () => import('./pages/ai-insights/ai-insights.component').then(m => m.AiInsightsComponent) },
   { path: 'signin', loadComponent: () => import('./pages/sign-in/sign-in.component').then(m => m.SignInComponent) },
   { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [authGuard] },
+  { path: 'profile', loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent), canActivate: [authGuard] },
   { path: 'my-applications', loadComponent: () => import('./pages/my-applications/my-applications.component').then(m => m.MyApplicationsComponent), canActivate: [candidateGuard] },
   { path: '**', redirectTo: '' }
 ];

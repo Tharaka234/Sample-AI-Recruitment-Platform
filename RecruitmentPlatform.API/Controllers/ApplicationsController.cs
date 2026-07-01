@@ -47,6 +47,14 @@ namespace RecruitmentPlatform.API.Controllers
             if (existing != null)
                 return BadRequest(new { message = "You have already applied for this job." });
 
+            // Fetch Candidate to get ResumeUrl
+            var candidate = await _context.Users.Find(u => u.Id == userId).FirstOrDefaultAsync();
+            if (candidate == null)
+                return NotFound(new { message = "Candidate profile not found." });
+
+            if (string.IsNullOrEmpty(candidate.ResumeUrl))
+                return BadRequest(new { message = "You must upload a resume to your profile before applying." });
+
             // Generate a simple AI match score (random for now, would use real AI in production)
             var random = new Random();
             var matchScore = Math.Round((decimal)(random.NextDouble() * 40 + 60), 2); // Score between 60-100
@@ -55,7 +63,7 @@ namespace RecruitmentPlatform.API.Controllers
             {
                 JobPostingId = dto.JobPostingId,
                 CandidateId = userId,
-                ResumeUrl = dto.ResumeUrl,
+                ResumeUrl = candidate.ResumeUrl,
                 AiMatchScore = matchScore
             };
 

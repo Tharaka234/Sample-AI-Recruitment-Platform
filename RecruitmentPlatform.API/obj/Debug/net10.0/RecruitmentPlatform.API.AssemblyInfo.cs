@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecruitmentPlatform.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+746701a8a651b83794a2bfab139d2dbb597b2a81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3798abbe2455c58274257a4743fe810db75efc6")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecruitmentPlatform.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecruitmentPlatform.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

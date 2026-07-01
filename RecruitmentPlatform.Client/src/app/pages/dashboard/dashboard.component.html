@@ -2,13 +2,10 @@
   <!-- Welcome Header -->
   <div class="mb-12">
     <h1 class="text-4xl md:text-5xl font-bold mb-2 text-white">
-      Welcome back,
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-        {{ user.firstName || 'User' }}
-      </span>
+      Candidate Dashboard
     </h1>
     <p class="text-slate-400 text-lg">
-      {{ user.role === 'Recruiter' ? 'Manage your job postings and find the perfect candidates.' : 'Track your applications and discover new opportunities.' }}
+      Welcome back, {{ user.firstName || 'User' }}! Track your applications and discover new opportunities.
     </p>
   </div>
 
@@ -24,11 +21,12 @@
   <!-- Quick Actions -->
   <div>
     <h2 class="text-2xl font-bold mb-6 text-white">Quick Actions</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <button *ngFor="let action of actions" (click)="navigate(action.link)"
               class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors text-left flex items-start gap-5 group relative overflow-hidden backdrop-blur-sm">
         <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div [class]="'relative z-10 w-14 h-14 rounded-xl bg-gradient-to-br ' + action.color + ' flex items-center justify-center text-white shrink-0 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/30 transition-shadow'">
+          <!-- Generic Icon for all for simplicity -->
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </div>
         <div class="relative z-10">

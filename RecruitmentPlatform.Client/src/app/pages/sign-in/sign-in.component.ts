@@ -29,8 +29,15 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/dashboard']);
+      this.redirectUser();
     }
+  }
+
+  private redirectUser(): void {
+    if (this.auth.isAdmin()) this.router.navigate(['/admin']);
+    else if (this.auth.isHiringManager()) this.router.navigate(['/hiring-manager']);
+    else if (this.auth.isRecruiter()) this.router.navigate(['/recruiters']);
+    else this.router.navigate(['/dashboard']);
   }
 
   toggleMode(): void {
@@ -46,7 +53,7 @@ export class SignInComponent implements OnInit {
       this.api.login(this.email, this.password).subscribe({
         next: (data) => {
           this.auth.setSession(data.token, { email: data.email, role: data.role, firstName: data.firstName });
-          this.router.navigate(['/dashboard']);
+          this.redirectUser();
         },
         error: (err) => {
           this.error = err.error?.message || 'Authentication failed';

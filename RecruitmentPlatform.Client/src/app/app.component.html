@@ -20,6 +20,8 @@
         <ng-container *ngIf="!auth.isCandidate()">
           <a routerLink="/recruiters" class="hover:text-emerald-400 transition-colors">For Recruiters</a>
         </ng-container>
+        <a *ngIf="user" routerLink="/dashboard" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Dashboard</a>
+        <a *ngIf="user" routerLink="/profile" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">My Profile</a>
         <a routerLink="/insights" class="hover:text-emerald-400 transition-colors">AI Insights</a>
         <ng-container *ngIf="auth.isHiringManager()">
           <a routerLink="/hiring-manager" class="hover:text-emerald-400 transition-colors">Hiring Dashboard</a>
@@ -74,6 +76,7 @@
         <a routerLink="/dashboard" class="text-emerald-400 hover:text-emerald-300 font-medium" (click)="isMenuOpen=false">
           Dashboard ({{ user.firstName }})
         </a>
+        <a routerLink="/profile" class="text-slate-300 hover:text-emerald-400 font-medium" (click)="isMenuOpen=false">My Profile</a>
         <button (click)="logout()" class="text-rose-400 hover:text-rose-300 text-left">Logout</button>
       </ng-container>
       <ng-template #mobileLoggedOut>

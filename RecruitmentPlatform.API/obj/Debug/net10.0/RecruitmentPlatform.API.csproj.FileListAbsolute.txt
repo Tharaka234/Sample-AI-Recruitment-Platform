@@ -47,3 +47,4 @@ C:\Users\User\OneDrive - NSBM\Documents\SA Coursework\RecruitmentPlatform.API\bi
 C:\Users\User\OneDrive - NSBM\Documents\SA Coursework\RecruitmentPlatform.API\bin\Debug\net10.0\Snappier.dll
 C:\Users\User\OneDrive - NSBM\Documents\SA Coursework\RecruitmentPlatform.API\bin\Debug\net10.0\ZstdSharp.dll
 C:\Users\User\OneDrive - NSBM\Documents\SA Coursework\RecruitmentPlatform.API\obj\Debug\net10.0\RecruitmentPlatform.API.sourcelink.json
+C:\Users\User\OneDrive - NSBM\Documents\SA Coursework\RecruitmentPlatform.API\bin\Debug\net10.0\RecruitmentPlatform.API.staticwebassets.runtime.json
