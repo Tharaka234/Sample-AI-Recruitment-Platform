@@ -268,7 +268,7 @@ namespace RecruitmentPlatform.API.Controllers
                 var applications = await _context.Applications.Find(a => true).ToListAsync();
                 return Ok(new DashboardStatsDto
                 {
-                    TotalJobs = await _context.JobPostings.CountDocumentsAsync(j => j.IsActive),
+                    TotalJobs = Convert.ToInt32(await _context.JobPostings.CountDocumentsAsync(j => j.IsActive)),
                     TotalApplications = applications.Count,
                     Shortlisted = applications.Count(a => a.Status == "Shortlisted"),
                     Interviewed = applications.Count(a => a.Status == "Interviewed"),
