@@ -45,6 +45,30 @@ export interface AuthResponse {
   firstName: string;
 }
 
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  createdAt: string;
+}
+
+export interface AdminStats {
+  totalUsers: number;
+  totalCandidates: number;
+  totalRecruiters: number;
+  totalAdmins: number;
+  totalJobs: number;
+  activeJobs: number;
+  totalApplications: number;
+  applicationsApplied: number;
+  applicationsShortlisted: number;
+  applicationsInterviewed: number;
+  applicationsHired: number;
+  applicationsRejected: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   constructor(private http: HttpClient) {}
@@ -96,5 +120,18 @@ export class ApiService {
 
   getStats(): Observable<DashboardStats> {
     return this.http.get<DashboardStats>(`${API}/api/applications/stats`);
+  }
+
+  // Admin
+  getAdminUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${API}/api/admin/users`);
+  }
+
+  updateUserRole(userId: string, role: string): Observable<any> {
+    return this.http.put(`${API}/api/admin/users/${userId}/role`, { role });
+  }
+
+  getAdminStats(): Observable<AdminStats> {
+    return this.http.get<AdminStats>(`${API}/api/admin/analytics`);
   }
 }

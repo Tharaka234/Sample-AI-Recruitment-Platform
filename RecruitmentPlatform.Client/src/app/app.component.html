@@ -14,9 +14,16 @@
       </a>
 
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a routerLink="/jobs" class="hover:text-emerald-400 transition-colors">Find Jobs</a>
-        <a routerLink="/recruiters" class="hover:text-emerald-400 transition-colors">For Recruiters</a>
+        <ng-container *ngIf="!auth.isRecruiter()">
+          <a routerLink="/jobs" class="hover:text-emerald-400 transition-colors">Find Jobs</a>
+        </ng-container>
+        <ng-container *ngIf="!auth.isCandidate()">
+          <a routerLink="/recruiters" class="hover:text-emerald-400 transition-colors">For Recruiters</a>
+        </ng-container>
         <a routerLink="/insights" class="hover:text-emerald-400 transition-colors">AI Insights</a>
+        <ng-container *ngIf="auth.isAdmin()">
+          <a routerLink="/admin" class="text-purple-400 hover:text-purple-300 font-medium transition-colors">Admin Panel</a>
+        </ng-container>
 
         <ng-container *ngIf="user; else loggedOut">
           <a routerLink="/dashboard"
@@ -40,16 +47,23 @@
         </ng-template>
       </div>
 
-      <button class="md:hidden text-slate-300 hover:text-emerald-400 transition-colors" (click)="toggleMenu()">
+      <button class="md:hidden text-slate-300 hover:text-emerald-400 transition-colors" (click)="toggleMenu()" aria-label="Toggle menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
       </button>
     </div>
 
     <!-- Mobile Menu -->
     <div *ngIf="isMenuOpen" class="md:hidden bg-[#030712] border-b border-white/10 px-6 py-4 flex flex-col gap-4">
-      <a routerLink="/jobs" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">Find Jobs</a>
-      <a routerLink="/recruiters" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">For Recruiters</a>
+      <ng-container *ngIf="!auth.isRecruiter()">
+        <a routerLink="/jobs" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">Find Jobs</a>
+      </ng-container>
+      <ng-container *ngIf="!auth.isCandidate()">
+        <a routerLink="/recruiters" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">For Recruiters</a>
+      </ng-container>
       <a routerLink="/insights" class="text-slate-300 hover:text-emerald-400" (click)="isMenuOpen=false">AI Insights</a>
+      <ng-container *ngIf="auth.isAdmin()">
+        <a routerLink="/admin" class="text-purple-400 hover:text-purple-300 font-medium" (click)="isMenuOpen=false">Admin Panel</a>
+      </ng-container>
       <ng-container *ngIf="user; else mobileLoggedOut">
         <a routerLink="/dashboard" class="text-emerald-400 hover:text-emerald-300 font-medium" (click)="isMenuOpen=false">
           Dashboard ({{ user.firstName }})

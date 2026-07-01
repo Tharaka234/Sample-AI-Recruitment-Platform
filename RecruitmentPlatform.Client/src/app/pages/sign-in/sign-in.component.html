@@ -29,12 +29,12 @@
 
         <div *ngIf="!isLogin" class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-1">First Name</label>
-            <input required [(ngModel)]="firstName" name="firstName" class="appearance-none block w-full px-4 py-3 border border-white/10 rounded-xl bg-white/5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition-all backdrop-blur-sm" />
+            <label for="firstName" class="block text-sm font-medium text-slate-300 mb-1">First Name</label>
+            <input id="firstName" placeholder="First Name" required [(ngModel)]="firstName" name="firstName" class="appearance-none block w-full px-4 py-3 border border-white/10 rounded-xl bg-white/5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition-all backdrop-blur-sm" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-slate-300 mb-1">Last Name</label>
-            <input required [(ngModel)]="lastName" name="lastName" class="appearance-none block w-full px-4 py-3 border border-white/10 rounded-xl bg-white/5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition-all backdrop-blur-sm" />
+            <label for="lastName" class="block text-sm font-medium text-slate-300 mb-1">Last Name</label>
+            <input id="lastName" placeholder="Last Name" required [(ngModel)]="lastName" name="lastName" class="appearance-none block w-full px-4 py-3 border border-white/10 rounded-xl bg-white/5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition-all backdrop-blur-sm" />
           </div>
         </div>
 
@@ -60,12 +60,15 @@
 
         <div *ngIf="!isLogin">
           <label class="block text-sm font-medium text-slate-300 mb-2">I am a...</label>
-          <div class="grid grid-cols-2 gap-4">
-            <button type="button" (click)="role='Candidate'" [class]="'py-3 px-4 rounded-xl border flex items-center justify-center gap-2 transition-all ' + (role === 'Candidate' ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10')">
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" (click)="role='Candidate'" [class]="'py-3 px-2 rounded-xl border flex items-center justify-center transition-all text-xs font-semibold ' + (role === 'Candidate' ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10')">
               Candidate
             </button>
-            <button type="button" (click)="role='Recruiter'" [class]="'py-3 px-4 rounded-xl border flex items-center justify-center gap-2 transition-all ' + (role === 'Recruiter' ? 'bg-cyan-500/10 border-cyan-500/50 text-cyan-400' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10')">
+            <button type="button" (click)="role='Recruiter'" [class]="'py-3 px-2 rounded-xl border flex items-center justify-center transition-all text-xs font-semibold ' + (role === 'Recruiter' ? 'bg-cyan-500/10 border-cyan-500/50 text-cyan-400' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10')">
               Recruiter
+            </button>
+            <button type="button" (click)="role='Admin'" [class]="'py-3 px-2 rounded-xl border flex items-center justify-center transition-all text-xs font-semibold ' + (role === 'Admin' ? 'bg-purple-500/10 border-purple-500/50 text-purple-400' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10')">
+              Admin
             </button>
           </div>
         </div>

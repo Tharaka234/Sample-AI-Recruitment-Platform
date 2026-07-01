@@ -25,3 +25,11 @@ export const candidateGuard: CanActivateFn = () => {
   router.navigate(['/']);
   return false;
 };
+
+export const adminGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isLoggedIn() && auth.isAdmin()) return true;
+  router.navigate(['/']);
+  return false;
+};
