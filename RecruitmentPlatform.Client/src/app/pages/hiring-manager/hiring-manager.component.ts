@@ -30,7 +30,7 @@ export class HiringManagerComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err: HttpErrorResponse) => {
-        this.error = 'Failed to load shortlisted applications.';
+        this.error = 'Failed to load shortlisted applications. Error: ' + (err.error?.message || err.message);
         this.isLoading = false;
       }
     });
