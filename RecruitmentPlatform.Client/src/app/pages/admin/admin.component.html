@@ -89,7 +89,7 @@
               <span class="text-emerald-400 font-medium">{{ stats.totalCandidates }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-4f2d1c56" [ngStyle]="{\'width\': ((stats.totalCandidates / stats.totalUsers) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-4f2d1c56" [ngStyle]="{'width': ((stats.totalCandidates / stats.totalUsers) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -98,7 +98,7 @@
               <span class="text-cyan-400 font-medium">{{ stats.totalRecruiters }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-8f251d75" [ngStyle]="{\'width\': ((stats.totalRecruiters / stats.totalUsers) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-8f251d75" [ngStyle]="{'width': ((stats.totalRecruiters / stats.totalUsers) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -107,7 +107,7 @@
               <span class="text-blue-400 font-medium">{{ stats.totalHiringManagers }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-c329c55e" [ngStyle]="{\'width\': ((stats.totalHiringManagers / stats.totalUsers) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-c329c55e" [ngStyle]="{'width': ((stats.totalHiringManagers / stats.totalUsers) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -116,7 +116,7 @@
               <span class="text-violet-400 font-medium">{{ stats.totalAdmins }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-29f313b3" [ngStyle]="{\'width\': ((stats.totalAdmins / stats.totalUsers) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-29f313b3" [ngStyle]="{'width': ((stats.totalAdmins / stats.totalUsers) * 100) + '%'}"></div>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
               <span class="text-slate-400 font-medium">{{ stats.applicationsApplied }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-aa34cdf7" [ngStyle]="{\'width\': ((stats.applicationsApplied / (stats.totalApplications || 1)) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-aa34cdf7" [ngStyle]="{'width': ((stats.applicationsApplied / (stats.totalApplications || 1)) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -142,7 +142,7 @@
               <span class="text-blue-400 font-medium">{{ stats.applicationsShortlisted }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-c329c55e" [ngStyle]="{\'width\': ((stats.applicationsShortlisted / (stats.totalApplications || 1)) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-c329c55e" [ngStyle]="{'width': ((stats.applicationsShortlisted / (stats.totalApplications || 1)) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -151,7 +151,7 @@
               <span class="text-violet-400 font-medium">{{ stats.applicationsInterviewed }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-29f313b3" [ngStyle]="{\'width\': ((stats.applicationsInterviewed / (stats.totalApplications || 1)) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-29f313b3" [ngStyle]="{'width': ((stats.applicationsInterviewed / (stats.totalApplications || 1)) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -160,7 +160,7 @@
               <span class="text-emerald-400 font-medium">{{ stats.applicationsHired }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-4f2d1c56" [ngStyle]="{\'width\': ((stats.applicationsHired / (stats.totalApplications || 1)) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-4f2d1c56" [ngStyle]="{'width': ((stats.applicationsHired / (stats.totalApplications || 1)) * 100) + '%'}"></div>
             </div>
           </div>
           <div>
@@ -169,7 +169,7 @@
               <span class="text-rose-400 font-medium">{{ stats.applicationsRejected }}</span>
             </div>
             <div class="progress-track h-2">
-              <div class="h-2 rounded-full ext-style-6ca6dfe6" [ngStyle]="{\'width\': ((stats.applicationsRejected / (stats.totalApplications || 1)) * 100) + \'\'}"></div>
+              <div class="h-2 rounded-full ext-style-6ca6dfe6" [ngStyle]="{'width': ((stats.applicationsRejected / (stats.totalApplications || 1)) * 100) + '%'}"></div>
             </div>
           </div>
         </div>
