@@ -1,0 +1,9 @@
+[Bb]in/
+[Oo]bj/
+node_modules/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

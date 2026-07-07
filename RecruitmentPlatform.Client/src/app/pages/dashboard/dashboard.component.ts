@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService, UserData } from '../../services/auth.service';
-import { ApiService, DashboardStats } from '../../services/api.service';
+import { ApiService, DashboardStats, AdminStats } from '../../services/api.service';
 
 interface DashboardAction {
   title: string;
@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
     private router: Router
   ) {}
 
+  adminStats: AdminStats | null = null;
+
   ngOnInit(): void {
     this.user = this.auth.getUser();
     if (!this.user) {
@@ -40,10 +42,17 @@ export class DashboardComponent implements OnInit {
     
     this.setupDashboard();
 
-    this.api.getStats().subscribe({
-      next: (data) => this.stats = data,
-      error: () => {}
-    });
+    if (this.user.role === 'Admin') {
+      this.api.getAdminStats().subscribe({
+        next: (data) => this.adminStats = data,
+        error: () => {}
+      });
+    } else {
+      this.api.getStats().subscribe({
+        next: (data) => this.stats = data,
+        error: () => {}
+      });
+    }
   }
 
   private setupDashboard(): void {
@@ -100,24 +109,24 @@ export class DashboardComponent implements OnInit {
       ];
     } else if (this.user?.role === 'Recruiter') {
       return [
-        { label: 'Active Jobs', value: 12 },
-        { label: 'Total Candidates', value: 145 },
-        { label: 'Shortlisted', value: 24 },
-        { label: 'Avg Time to Hire', value: '18 Days' },
+        { label: 'Active Jobs', value: this.stats?.totalJobs || 0 },
+        { label: 'Total Applications', value: this.stats?.totalApplications || 0 },
+        { label: 'Shortlisted', value: this.stats?.shortlisted || 0 },
+        { label: 'Hired Candidates', value: this.stats?.hired || 0 },
       ];
     } else if (this.user?.role === 'HiringManager') {
       return [
-        { label: 'Open Requisitions', value: 3 },
-        { label: 'Pending Interviews', value: 5 },
-        { label: 'Offers Extended', value: 2 },
-        { label: 'Hires This Quarter', value: 7 },
+        { label: 'Total Open Jobs', value: this.stats?.totalJobs || 0 },
+        { label: 'Candidates Shortlisted', value: this.stats?.shortlisted || 0 },
+        { label: 'Pending Interviews', value: this.stats?.interviewed || 0 },
+        { label: 'Hires This Quarter', value: this.stats?.hired || 0 },
       ];
     } else { // Admin
       return [
-        { label: 'Total Users', value: 1240 },
-        { label: 'Active Jobs', value: 342 },
-        { label: 'Platform Uptime', value: '99.9%' },
-        { label: 'System Alerts', value: 0 },
+        { label: 'Total Users', value: this.adminStats?.totalUsers || 0 },
+        { label: 'Active Jobs', value: this.adminStats?.activeJobs || 0 },
+        { label: 'Total Applications', value: this.adminStats?.totalApplications || 0 },
+        { label: 'Hired Candidates', value: this.adminStats?.applicationsHired || 0 },
       ];
     }
   }
